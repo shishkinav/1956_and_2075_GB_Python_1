@@ -5,23 +5,18 @@ def transfer_list_in_str(list_in: list) -> str:
     """Преобразует каждый элемент списка (вещественное число) в строку вида '<r> руб <kk> коп' и
         формирует из них единую строковую переменную разделяя значения запятой."""
     # пишите реализацию своей программы здесь
-    # приведение к типу "строка"
-    i = 0
+    str_out =''
     for element in list_in:
-        price = str(element)
-        list_in.insert(i, price.split('.'))
-        del list_in[i + 1]
-        i += 1
-    # формат строки
-    i = 0
-    for element in list_in:
-        if len(element[1]) < 2:
-            element[1] = '0' + element[1]
-        price = ' руб '.join(element)
-        list_in.insert(i, price + ' коп, ')
-        del list_in[i +1]
-        i += 1
-    str_out = ''.join(list_in)        #"здесь итоговая строка"
+        int_part = element
+        float_part = element
+        int_part = int_part // 1
+        float_part = (float_part - int_part + 0.001) * 100
+        int_part = f'{int(int_part)} руб '
+        if int(float_part) < 10:
+            float_part = f'0{int(float_part)} коп, '
+        else:
+            float_part =  f'{int(float_part)} коп, '
+        str_out += int_part +float_part     #"здесь итоговая строка"
     return str_out
 
 
@@ -35,40 +30,52 @@ def sort_prices(list_in: list) -> list:
     """Сортирует вещественные числа по возрастанию, не создавая нового списка"""
     # пишите реализацию здесь
     my_list.sort()
-    return my_list, "отсортированный результирующий список"
+    return my_list
+
 
 
 # зафиксируйте здесь информацию по исходному списку my_list
-print(id(my_list))
+print('id  my_list:',id(my_list) )
+
 result_2 = sort_prices(my_list)
 # зафиксируйте здесь доказательство, что результат result_2 остался тем же объектом
-print(id(result_2))
-print(result_2)
+
+print('id result_2:',id(result_2) )
+print(result_2,"отсортированный результирующий список")
 
 
 def sort_price_adv(list_in: list) -> list:
     """Создаёт новый список и возвращает список с элементами по убыванию"""
     # пишите реализацию здесь
     my_list_rev = copy.copy(my_list)
-    list_out = list(reversed(my_list_rev)), "список элементов в списке по убыванию"
+    list_out = list(reversed(my_list_rev))
     return list_out
 
 
 result_3 = sort_price_adv(my_list)
-print(result_3)
+print(result_3, "список элементов в списке по убыванию")
 
 
 def check_five_max_elements(list_in: list) -> list:
     """Проверяет элементы входного списка вещественных чисел и возвращает
         список из ПЯТИ максимальных значений"""
     # пишите реализацию здесь
-    list_out = ["список из пяти самых больших элементов"]
-    return list_out
+    list_out = []
+    sort_prices(list_in)
+    i = -1
+    while i != -6:
+        list_out.append(list_in[i])
+        i -= 1
+
+
+
+
+
+    return  sorted(list_out)
 
 
 result_4 = check_five_max_elements(my_list)
-print(result_4)
-
+print(result_4, "список из пяти самых больших элементов")
 
 
 
