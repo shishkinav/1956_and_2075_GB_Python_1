@@ -20,6 +20,8 @@ my_list = ['в', '05', 'часов', '17', 'минут', 'температура
 result = convert_list_in_str(my_list)
 print(result)
 
+# end
+
 
 
 
