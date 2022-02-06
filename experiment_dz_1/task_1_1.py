@@ -1,2 +1,3 @@
-print('Hello world!')
-# наше тестовое выполнение ДЗ
+print([_ for _ in 'Hello world!'])
+
+
